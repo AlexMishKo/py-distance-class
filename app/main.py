@@ -22,7 +22,7 @@ class Distance:
             return NotImplemented
 
     def __add__(self, other: Union[int, float, "Distance"])\
-            -> Union["Distance", NotImplemented]:
+            -> Union["Distance", type(NotImplemented)]:
         other_km = self._get_km_value(other)
         if other_km is NotImplemented:
             return NotImplemented
@@ -32,7 +32,7 @@ class Distance:
         return self.__add__(other)
 
     def __iadd__(self, other: Union[int, float, "Distance"]) \
-            -> Union[NotImplemented, "Distance"]:
+            -> Union["Distance", type(NotImplemented)]:
         other_km = self._get_km_value(other)
         if other_km is NotImplemented:
             return NotImplemented
@@ -40,7 +40,7 @@ class Distance:
         return self
 
     def __mul__(self, other: Union[int, float, "Distance"]) \
-            -> Union[NotImplemented, "Distance"]:
+            -> Union["Distance", type(NotImplemented)]:
         if not isinstance(other, (int, float)):
             return NotImplemented
         return Distance(self.km * other)
@@ -49,7 +49,7 @@ class Distance:
         return self.__mul__(other)
 
     def __truediv__(self, other: Union[int, float, "Distance"])\
-            -> Union[NotImplemented, "Distance", ZeroDivisionError]:
+            -> Union["Distance", type(ZeroDivisionError)]:
         if not isinstance(other, (int, float)):
             return NotImplemented
         if other == 0:
