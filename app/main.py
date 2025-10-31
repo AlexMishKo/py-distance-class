@@ -36,7 +36,6 @@ class Distance:
     def __mul__(self, other: Union[int, float]) -> Distance:
         return Distance(self.km * other)
 
-
     def __rmul__(self, other: Union[int, float]) -> Distance:
         return self.__mul__(other)
 
