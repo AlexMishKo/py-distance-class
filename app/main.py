@@ -33,10 +33,9 @@ class Distance:
         self.km += other_km
         return self
 
-    def __mul__(self, other: Union[int, float]) -> Union[Distance, None]:
-        if isinstance(other, (int, float)):
-            return Distance(self.km * other)
-        return None
+    def __mul__(self, other: Union[int, float]) -> Distance:
+        return Distance(self.km * other)
+
 
     def __rmul__(self, other: Union[int, float]) -> Distance:
         return self.__mul__(other)
@@ -60,9 +59,7 @@ class Distance:
         return self.km == other_km
 
     def __le__(self, other: Union[int, float, Distance]) -> bool:
-        other_km = self._get_km_value(other)
-        return self.km <= other_km
+        return not self > other
 
     def __ge__(self, other: Union[int, float, Distance]) -> bool:
-        other_km = self._get_km_value(other)
-        return self.km >= other_km
+        return not self < other
