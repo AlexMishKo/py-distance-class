@@ -33,8 +33,11 @@ class Distance:
         self.km += other_km
         return self
 
-    def __mul__(self, other: Union[int, float]) -> Distance:
-        return Distance(self.km * other)
+    def __mul__(self, other: float) -> Distance:
+        if isinstance(other, (int, float)):
+            return Distance(self.km * other)
+        else:
+            raise TypeError("__mul__ supports numeric values, not Distance")
 
     def __rmul__(self, other: Union[int, float]) -> Distance:
         return self.__mul__(other)
